@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+    web:
+        image: nginx:latest
+        ports:
+            - 80:80
+        volumes:
+            - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+            - .:/var/www
+        links: 
+            - php
+        
+    php:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - .:/var/www
+        links:
+            - db
+    
+    db:
+        image: postgres
+        volumes:
+            - ./postgresql/data:/var:lib/postgres/data
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_DB: library
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: password
+
+    pgadmin:
+        image: dpage/pgadmin4
+        ports:
+            - 5050:80
+        depends_on:
+            - db
+        environment: 
+            PGADMIN_DEFAULT_EMAIL: test@test.com
+            PGADMIN_DEFAULT_PASSWORD: password
+
+    cron:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        entrypoint: ["bash", "-c", "cron -f"]
+        depends_on:
+                - db
+volumes:
+    db-data: ~

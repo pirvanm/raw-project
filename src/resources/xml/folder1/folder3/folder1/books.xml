@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<books>
+    <book>
+        <author>Stephen King</author>
+        <name>The Shining</name>
+    </book>
+    <book>
+        <author>Orson Scott Card</author>
+        <name>Seventh Son</name>
+    </book>
+    <book>
+        <author>Isak Azimov</author>
+        <name>Space, the final frontier</name>
+    </book>
+</books>

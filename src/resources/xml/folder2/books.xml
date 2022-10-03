@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<books>
+    <book>
+        <author>Gary Cooper</author>
+    </book>
+    <book>
+        <author>Stephen King</author>
+        <name>The Green Mile</name>
+    </book>
+</books>
